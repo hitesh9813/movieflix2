@@ -17,9 +17,9 @@
     "url": "https://github.com/hitesh9813/movieflix2/issues"
   },
   "homepage": "https://github.com/hitesh9813/movieflix2#readme",
-  "description": "",
   "dependencies": {
     "express": "^5.1.0",
     "multer": "^2.0.0"
-  }
+  },
+  "description": ""
 }
