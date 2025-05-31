@@ -1,1 +1,58 @@
-<!DOCTYPE html><html><body><h1>MovieFlix Site Loaded</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MovieFlix</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <header class="bg-black text-white p-4">
+    <h1 class="text-xl font-bold text-center">🎬 MovieFlix - Watch & Download</h1>
+  </header>
+
+  <main class="max-w-4xl mx-auto p-4">
+    <!-- Upload Form -->
+    <section class="bg-white p-4 rounded shadow mb-6">
+      <h2 class="text-lg font-semibold mb-2">🔐 Upload Movie (Admin Only)</h2>
+      <form action="/upload-movie" method="post" enctype="multipart/form-data" class="space-y-2">
+        <input type="file" name="movie" required class="block w-full">
+        <input type="file" name="thumbnail" required class="block w-full">
+        <input type="text" name="category" placeholder="Category (Action, Comedy...)" required class="block w-full p-2 border rounded">
+        <input type="password" name="adminpass" placeholder="Admin Password" required class="block w-full p-2 border rounded">
+        <button class="bg-blue-600 text-white px-4 py-2 rounded">Upload</button>
+      </form>
+    </section>
+
+    <!-- Movie List -->
+    <section id="movieList" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></section>
+  </main>
+
+  <footer class="bg-gray-200 text-center text-gray-600 py-4 mt-10">
+    &copy; 2025 MovieFlix. All rights reserved.
+  </footer>
+
+  <script>
+    async function loadMovies() {
+      const res = await fetch("/movies");
+      const movies = await res.json();
+      const container = document.getElementById("movieList");
+      container.innerHTML = "";
+      movies.forEach(m => {
+        container.innerHTML += `
+          <div class="bg-white p-4 rounded shadow">
+            <img src="/thumbnails/${m.thumbnail}" alt="${m.name}" class="w-full h-48 object-cover rounded mb-2">
+            <h3 class="font-bold">${m.name}</h3>
+            <p class="text-sm text-gray-600">Category: ${m.category} | Views: ${m.views} | Date: ${m.date}</p>
+            <div class="mt-2 flex gap-2">
+              <a href="/watch/${encodeURIComponent(m.name)}" target="_blank" class="bg-purple-600 text-white px-3 py-1 rounded">Watch</a>
+              <a href="/download/${encodeURIComponent(m.name)}" class="bg-green-600 text-white px-3 py-1 rounded">Download</a>
+            </div>
+          </div>
+        `;
+      });
+    }
+    loadMovies();
+  </script>
+</body>
+</html>
