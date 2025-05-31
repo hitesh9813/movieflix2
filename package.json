@@ -1,0 +1,25 @@
+{
+  "name": "movieflix",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hitesh9813/movieflix2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hitesh9813/movieflix2/issues"
+  },
+  "homepage": "https://github.com/hitesh9813/movieflix2#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "multer": "^2.0.0"
+  }
+}
